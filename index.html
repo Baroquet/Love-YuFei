@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2024-7-7</title>
+    <meta name="language" content="zh-CN">
+    <script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link rel="icon" type="image/x-icon" href="./images/icon.JPG">
+    <link rel="stylesheet" href="css/demo.css" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: pink;
+        }
+
+        #frame {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            margin: 450px auto;
+        }
+
+        .heart {
+            position: absolute;
+        }
+
+        .left,
+        .right {
+            top: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .left {
+            left: 35px;
+
+        }
+
+        .right {
+            right: 35px;
+            z-index: -1;
+        }
+
+        .bottom {
+            bottom: 36px;
+            left: 100px;
+            width: 200px;
+            height: 200px;
+            transform: rotate(45deg);
+            z-index: -1;
+
+        }
+
+        .heart {
+            position: absolute;
+            box-shadow: 0 0 40px #d5093c;
+            animation: beat .4s ease infinite normal;
+            background: linear-gradient(-90deg, #F50A45 0%, #d5093c 40%);
+        }
+
+        .text {
+            position: absolute;
+            padding: 0px;
+            background-color: none;
+            color: white;
+            font-family: 'Love Ya Like A Sister', cursive;
+            font-size: 45px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        @keyframes beat {
+            0% {
+                transform: scale(1) rotate(225deg);
+                box-shadow: 0 0 40px #d5093c;
+            }
+
+            50% {
+                transform: scale(1.1) rotate(225deg);
+                box-shadow: 0 0 70px #d5093c;
+            }
+
+            100% {
+                transform: scale(1) rotate(225deg);
+                box-shadow: 0 0 40px #d5093c;
+                ;
+            }
+        }
+
+        .pre_word {
+            position: absolute;
+            width: 100%;
+            top: 5%;
+            left: 5%;
+            text-align: left;
+            /* transform: translateY(-50%); */
+            font-family: 'Love Ya Like A Sister', cursive;
+            font-size: 40px;
+            color: #c70012;
+            padding: 0 0px;
+        }
+
+        #songName {
+            position: absolute;
+            width: 100%;
+            top: 10%;
+            left: 0%;
+            text-align: center;
+            /* transform: translateY(-50%); */
+            font-family: 'Love Ya Like A Sister', cursive;
+            font-size: 50px;
+            color: #c70012;
+            padding: 0 0px;
+        }
+
+        .word {
+            position: absolute;
+            width: 100%;
+            bottom: 10%;
+            left: 0%;
+            text-align: center;
+            /* transform: translateY(-50%); */
+            font-family: 'Love Ya Like A Sister', cursive;
+            font-size: 50px;
+            color: #c70012;
+            padding: 0 0px;
+        }
+
+        .songs-list {
+            position: relative;
+            height: 550px;
+            bottom: 200px;
+            width: 85%;
+            margin-left: 10%;
+            transition-duration: 0.3s;
+        }
+
+        .songs-list table {
+            width: 100%;
+        }
+
+        .songs-list .songs{
+            width: 100%;
+            height: 400px;
+            /* border: #000000 3px solid; */
+            background-color: #ec9f9f;
+            border-radius: 15px;
+            overflow-y: scroll;
+        }
+
+        .songs-list table tr{
+            height: 80px;
+        }
+
+        .songs-list table tr:hover {
+            background: rgba(180, 180, 180, 0.3);
+        }
+
+        .songs-list table tr:hover .song-index {
+            display: none;
+        }
+
+        .songs-list table tr:hover .play-btn {
+            display: block;
+        }
+
+        .songs-list table tr td {
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-size: 30px;
+            text-align: center;
+            color: #ee4a4a;
+        }
+
+        .song-index {
+            display: block;
+        }
+
+        .song-operate {
+            display: none;
+        }
+
+        .songs-list table tr:hover .song-operate {
+            display: block;
+        }
+
+        .songs-list table tr:hover .time-dis {
+            display: none;
+        }
+
+
+        .play-btn {
+            border: none;
+            background: none;
+            display: none;
+            padding: 0;
+            margin-left: 40%;
+            float: left;
+            color: #666666;
+        }
+
+        .play-btn:hover {
+            color: #999999;
+        }
+
+        /* 底部音乐控制栏，固定在底部 */
+        .bottomBar {
+            bottom: 0;
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            text-align: center;
+            padding: 10px 0px;
+            /*background-color: #333;*/
+            background-image: linear-gradient(#444, #222);
+            white-space: nowrap;
+            box-shadow: 0px -1px 8px #000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        /* 歌曲控制模块 */
+        .controlButton {
+            padding: 0;
+            margin-right: 1%;
+            margin-top: 20px;
+            /*width: 100px;*/
+            display: inline-block;
+        }
+
+        /* 歌曲控制按钮 */
+        .controlButton button {
+            transition-duration: 0.3s;
+            background: 0;
+            border: 0;
+            display: inline-block;
+            font-size: 40px;
+            height: 100%;
+            vertical-align: bottom;
+            width: 2em;
+            color: #888;
+            outline: none;
+        }
+
+        .controlButton button:hover {
+            color: #fff;
+            text-shadow: 0px 0px 5px #ccc;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <b class="pre_word">Give My Heart To You:</b>
+
+    <div id="frame">
+        <div class="heart left"></div>
+        <div class="heart right"></div>
+        <div class="heart bottom"></div>
+    </div>
+
+    <b id="songName"></b>
+
+    <!-- add a music list -->
+    <div class="songs-list">
+        <table>
+            <tr style="color:rgba(20,20,20,0.7);background:rgba(255,255,255,0.7)">
+                <td style="width:10%"></td>
+                <td style="width:54%;text-align: center;">Song Name</td>
+                <td style="width:13%;text-align: center;">Author</td>
+                <td style="width:13%;text-align: center;">Time</td>
+            </tr>
+            <tr style="height:5px">
+                <td colspan=4>
+                    <div style="height:5px;background-color:#d74f4f"></div>
+                </td>
+            </tr>
+        </table>
+        <div class="songs">
+            <table id="musics">
+                <!-- <%= html1 %> -->
+            </table>
+            <table>
+                <tr>
+                    <td colspan="4" style="text-align:center;"><span> - 未完 - </span></td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+
+    <b class="word" id="wd"></b>
+
+    <div id="f3" class="bottomBar">
+
+        <audio id="player">
+            <source id="playSrc" type="audio/mpeg">
+        </audio>
+
+        <div class="controlButton">
+            <button id="preBtn"><i class="fa fa-backward" aria-hidden="true"></i></button>
+            <button id="playBtn"><i class="fa fa-play" aria-hidden="true"></i></button>
+            <button id="nextBtn"><i class="fa fa-forward" aria-hidden="true"></i></button>
+        </div>
+
+
+        <!-- <div class="coverContainer">
+            <img id="songCover" class="cover" src="Images/nocover.png">
+        </div> -->
+    </div>
+
+    <script>
+
+        // create a list of texts
+        var love_words = ['I Love You ~', 'You are my sun shine ~', 'My heart beats for you ~'];
+
+        var musicList = [
+            { song_name: "中学时代", meaning_words: '把百合日记藏在书包，<br>我纯真的你，我生命中的唯一', author: "李健", url: "./Bgms/smnh-zxsd.ogg", time: "00:00" },
+            { song_name: "出游", meaning_words: '就让阴暗被阳光照射并吞没，<br>化解所有的所有，<br>年少的不快乐<br>想象着，让人砰砰心跳头晕脑发热', author: "窦唯", url: "./Bgms/dw-cy.ogg", time: "00:00" },
+            { song_name: "我唯有的你", meaning_words: '绕来绕去浮浮沉沉江湖当海洋，<br>错把欲望当成了理想<br>帮我渡过重重险滩是谁派你来，<br>我拿什么回报你的爱', author: "李健", url: "./Bgms/lj-wwydn.ogg", time: "00:00" },
+            { song_name: "日落之前", meaning_words: '当我再次牵起你的手，<br>我竟一如当初般感动<br>坚强的心依然柔软，<br>还会为了爱泪流', author: "李健", url: "./Bgms/lj-rlzq.mp3", time: "00:00" },
+            { song_name: "爱丽丝晚安", meaning_words: 'Alice Good Night、Good Night，<br>迷雾漆黑，我会陪你穿越', author: "守夜人", url: "./Bgms/nk-alice-good-night.mp3", time: "00:00" },
+            { song_name: "一切刚刚好", meaning_words: '感谢你给我的如此不同，<br>你让我知道我为你心动', author: "李健", url: "./Bgms/lj-yqggh.ogg", time: "00:00" },
+            { song_name: "我的爱", meaning_words: '我的爱就像落叶风中摇，<br>期待暖暖的怀抱，<br>能够栖息到终老', author: "张雨生", url: "./Bgms/zys-wda.ogg", time: "00:00" },
+
+        ]
+
+        const musicTableBody = document.getElementById('musics');
+
+        for (let i = 0; i < musicList.length; i++) {
+            const row = document.createElement('tr');
+            row.style.height = '80px';
+
+            const indexCell = document.createElement('td');
+            indexCell.style.width = '10%';
+            indexCell.innerHTML = `<span class='song-index' style='float:left;padding:0;margin-left:50%;'>` + (i + 1) + `</span>
+                        <button onclick=playMusic(` + i + `) class='play-btn' name='song-play-btn'> <i class='fa fa-play-circle fa-3x' aria-hidden='true'></i></button>`;
+            row.appendChild(indexCell);
+
+            const songNameCell = document.createElement('td');
+            songNameCell.style.width = '54%';
+            songNameCell.innerHTML = musicList[i].song_name;
+            row.appendChild(songNameCell);
+
+            const authorCell = document.createElement('td');
+            authorCell.style.width = '13%';
+            authorCell.innerHTML = musicList[i].author;
+            row.appendChild(authorCell);
+
+            const timeCell = document.createElement('td');
+            timeCell.style.width = '13%';
+            timeCell.innerHTML = musicList[i].time;
+            row.appendChild(timeCell);
+
+            musicTableBody.appendChild(row);
+        }
+
+
+        // var audio = document.getElementById('audios');
+        // audio.volume = 1.0;
+        // audio.play();
+        document.getElementById('frame').addEventListener('click', function(event) {
+            var text = document.createElement('div');
+            text.className = 'text';
+            // random select a word
+            var love_word = love_words[Math.floor(Math.random() * love_words.length)];
+            text.textContent = love_word;
+            text.style.left = event.pageX + 'px';
+            text.style.top = event.pageY + 'px';
+
+            console.log(event.pageX, event.pageY);
+            console.log(text.width, text.height);
+            document.body.appendChild(text);
+
+
+            setTimeout(function() {
+                text.style.opacity = 1;
+            }, 100);
+
+            setTimeout(function() {
+                text.style.opacity = 0;
+                setTimeout(function() {
+                    document.body.removeChild(text);
+                }, 1000);
+            }, 2000);
+        });
+        document.body.clientWidth;
+
+        var state = false;
+        var curIndex = -1;
+
+        function playMusic(idx) {
+            const audioPlayer = document.getElementById('player');
+            audioPlayer.src = musicList[idx].url;
+
+            state = false;
+            curIndex = idx;
+
+            $("#playBtn").click();
+        }
+
+
+        //播放按钮
+        $("#playBtn").click(function () {
+            console.log("playBtn");
+            if (state == true) {
+                $("#player")[0].pause();
+                document.getElementById("playBtn").innerHTML = "<i class='fa fa-play' aria-hidden='true'></i>";
+                state = false;
+            } else {
+                if ($("#player").attr("src") != null) {
+                    $("#player")[0].play();
+                    document.getElementById("playBtn").innerHTML =
+                        "<i class='fa fa-pause' aria-hidden='true'></i>";
+                    
+                    const songName = document.getElementById('songName');
+                    songName.innerHTML = musicList[curIndex].song_name;
+
+                    const word = document.getElementById('wd');
+                    word.innerHTML = musicList[curIndex].meaning_words;
+
+
+                    state = true;
+                } else if (musicList.length > 0 && curIndex >= 0) {
+                    $("#player").attr("src", musicList[curIndex]);
+                    $("#player")[0].play();
+                    document.getElementById("playBtn").innerHTML =
+                        "<i class='fa fa-pause' aria-hidden='true'></i>";
+
+                    const songName = document.getElementById('songName');
+                    songName.innerHTML = musicList[curIndex].song_name;
+
+                    const word = document.getElementById('wd');
+                    word.innerHTML = musicList[curIndex].meaning_words;
+
+                    state = true;
+                }
+
+            }
+        })
+        //上一曲
+        $("#preBtn").click(function () {
+            if (musicList.length > 0 && curIndex > 0) {
+                curIndex--;
+                $("#player").attr("src", musicList[curIndex].url);
+                state = false;
+                $("#playBtn").click();
+            }
+        })
+        //下一曲
+        $("#nextBtn").click(function () {
+            if (musicList.length > 0 && curIndex != musicList.length - 1) {
+                curIndex++;
+                $("#player").attr("src", musicList[curIndex].url);
+                state = false;
+                $("#playBtn").click();
+            }
+        })
+
+
+    </script>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/snowfall.jquery.js"></script>
+    <script src="js/demo.js"></script>
+</body>
+
+</html>
