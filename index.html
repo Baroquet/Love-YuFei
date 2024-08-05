@@ -17,13 +17,14 @@
 
         body {
             background-color: pink;
+            overflow: hidden;
         }
 
         #frame {
             position: relative;
             width: 400px;
             height: 300px;
-            margin: 450px auto;
+            margin: 400px auto;
         }
 
         .heart {
@@ -97,7 +98,7 @@
         .pre_word {
             position: absolute;
             width: 100%;
-            top: 5%;
+            top: 8%;
             left: 5%;
             text-align: left;
             /* transform: translateY(-50%); */
@@ -110,7 +111,7 @@
         #songName {
             position: absolute;
             width: 100%;
-            top: 10%;
+            top: 12%;
             left: 0%;
             text-align: center;
             /* transform: translateY(-50%); */
@@ -123,7 +124,7 @@
         .word {
             position: absolute;
             width: 100%;
-            bottom: 10%;
+            bottom: 15%;
             left: 0%;
             text-align: center;
             /* transform: translateY(-50%); */
@@ -215,9 +216,9 @@
             position: fixed;
             left: 0;
             width: 100%;
-            height: 100px;
+            height: 150px;
             text-align: center;
-            padding: 10px 0px;
+            padding: 0px 0px;
             /*background-color: #333;*/
             background-image: linear-gradient(#444, #222);
             white-space: nowrap;
@@ -230,7 +231,7 @@
         .controlButton {
             padding: 0;
             margin-right: 1%;
-            margin-top: 20px;
+            margin-top: 30px;
             /*width: 100px;*/
             display: inline-block;
         }
@@ -241,7 +242,7 @@
             background: 0;
             border: 0;
             display: inline-block;
-            font-size: 40px;
+            font-size: 50px;
             height: 100%;
             vertical-align: bottom;
             width: 2em;
@@ -323,13 +324,13 @@
         var love_words = ['I Love You ~', 'You are my sun shine ~', 'My heart beats for you ~'];
 
         var musicList = [
-            { song_name: "中学时代", meaning_words: '把百合日记藏在书包，<br>我纯真的你，我生命中的唯一', author: "李健", url: "./Bgms/smnh-zxsd.ogg", time: "00:00" },
-            { song_name: "出游", meaning_words: '就让阴暗被阳光照射并吞没，<br>化解所有的所有，<br>年少的不快乐<br>想象着，让人砰砰心跳头晕脑发热', author: "窦唯", url: "./Bgms/dw-cy.ogg", time: "00:00" },
-            { song_name: "我唯有的你", meaning_words: '绕来绕去浮浮沉沉江湖当海洋，<br>错把欲望当成了理想<br>帮我渡过重重险滩是谁派你来，<br>我拿什么回报你的爱', author: "李健", url: "./Bgms/lj-wwydn.ogg", time: "00:00" },
-            { song_name: "日落之前", meaning_words: '当我再次牵起你的手，<br>我竟一如当初般感动<br>坚强的心依然柔软，<br>还会为了爱泪流', author: "李健", url: "./Bgms/lj-rlzq.mp3", time: "00:00" },
-            { song_name: "爱丽丝晚安", meaning_words: 'Alice Good Night、Good Night，<br>迷雾漆黑，我会陪你穿越', author: "守夜人", url: "./Bgms/nk-alice-good-night.mp3", time: "00:00" },
-            { song_name: "一切刚刚好", meaning_words: '感谢你给我的如此不同，<br>你让我知道我为你心动', author: "李健", url: "./Bgms/lj-yqggh.ogg", time: "00:00" },
-            { song_name: "我的爱", meaning_words: '我的爱就像落叶风中摇，<br>期待暖暖的怀抱，<br>能够栖息到终老', author: "张雨生", url: "./Bgms/zys-wda.ogg", time: "00:00" },
+            { song_name: "中学时代", meaning_words: '把百合日记藏在书包，<br>我纯真的你，我生命中的唯一', author: "李健", url: "./Bgms/smnh-zxsd.ogg", time: "3:32" },
+            { song_name: "出游", meaning_words: '就让阴暗被阳光照射并吞没，<br>化解所有的所有，<br>年少的不快乐<br>想象着，让人砰砰心跳头晕脑发热', author: "窦唯", url: "./Bgms/dw-cy.ogg", time: "2:23" },
+            { song_name: "我唯有的你", meaning_words: '绕来绕去浮浮沉沉江湖当海洋，<br>错把欲望当成了理想<br>帮我渡过重重险滩是谁派你来，<br>我拿什么回报你的爱', author: "李健", url: "./Bgms/lj-wwydn.ogg", time: "4:12" },
+            { song_name: "日落之前", meaning_words: '当我再次牵起你的手，<br>我竟一如当初般感动<br>坚强的心依然柔软，<br>还会为了爱泪流', author: "李健", url: "./Bgms/lj-rlzq.mp3", time: "3:22" },
+            { song_name: "爱丽丝晚安", meaning_words: 'Alice Good Night、Good Night，<br>迷雾漆黑，我会陪你穿越', author: "守夜人", url: "./Bgms/nk-alice-good-night.mp3", time: "4:49" },
+            { song_name: "一切刚刚好", meaning_words: '感谢你给我的如此不同，<br>你让我知道我为你心动', author: "李健", url: "./Bgms/lj-yqggh.ogg", time: "4:07" },
+            { song_name: "我的爱", meaning_words: '我的爱就像落叶风中摇，<br>期待暖暖的怀抱，<br>能够栖息到终老', author: "张雨生", url: "./Bgms/zys-wda.ogg", time: "4:21" },
 
         ]
 
