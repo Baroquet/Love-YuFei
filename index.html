@@ -403,9 +403,10 @@
             state = false;
             curIndex = idx;
 
-            // $("#playBtn").click();
-            const playBtn = document.getElementById('playBtn');
-            playBtn.click();
+            audioPlayer.load();
+            $("#playBtn").click();
+            // const playBtn = document.getElementById('playBtn');
+            // playBtn.click();
         }
 
         //播放按钮
@@ -441,6 +442,7 @@
                     state = true;
                 } else if (musicList.length > 0 && curIndex >= 0) {
                     $("#player").attr("src", musicList[curIndex].url);
+                    $("#player")[0].load();
                     var playPromise = $("#player")[0].play();
                     if (playPromise !== undefined) {
                         document.getElementById("playBtn").innerHTML = "<i class='fa fa-play' aria-hidden='true'></i>";
