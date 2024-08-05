@@ -410,16 +410,25 @@
 
         //播放按钮
         $("#playBtn").click(function () {
-            console.log("playBtn");
             if (state == true) {
                 $("#player")[0].pause();
                 document.getElementById("playBtn").innerHTML = "<i class='fa fa-play' aria-hidden='true'></i>";
                 state = false;
             } else {
                 if ($("#player").attr("src") != null) {
-                    $("#player")[0].play();
-                    document.getElementById("playBtn").innerHTML =
-                        "<i class='fa fa-pause' aria-hidden='true'></i>";
+                    var playPromise = $("#player")[0].play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            // Automatic playback started!
+                            // Show playing UI.
+                            document.getElementById("playBtn").innerHTML =
+                            "<i class='fa fa-pause' aria-hidden='true'></i>";
+                        }).catch(error => {
+                            // Auto-play was prevented
+                            // Show paused UI.
+                            console.log(error);
+                        })
+                    }
                     
                     const songName = document.getElementById('songName');
                     songName.innerHTML = musicList[curIndex].song_name;
@@ -427,13 +436,22 @@
                     const word = document.getElementById('wd');
                     word.innerHTML = musicList[curIndex].meaning_words;
 
-
                     state = true;
                 } else if (musicList.length > 0 && curIndex >= 0) {
                     $("#player").attr("src", musicList[curIndex].url);
-                    $("#player")[0].play();
-                    document.getElementById("playBtn").innerHTML =
-                        "<i class='fa fa-pause' aria-hidden='true'></i>";
+                    var playPromise = $("#player")[0].play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            // Automatic playback started!
+                            // Show playing UI.
+                            document.getElementById("playBtn").innerHTML =
+                            "<i class='fa fa-pause' aria-hidden='true'></i>";
+                        }).catch(error => {
+                            // Auto-play was prevented
+                            // Show paused UI.
+                            console.log(error);
+                        })
+                    }
 
                     const songName = document.getElementById('songName');
                     songName.innerHTML = musicList[curIndex].song_name;
