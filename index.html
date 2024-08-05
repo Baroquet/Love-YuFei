@@ -24,7 +24,7 @@
             position: relative;
             width: 400px;
             height: 300px;
-            margin: 400px auto;
+            margin: 35% auto;
         }
 
         .heart {
@@ -103,7 +103,7 @@
             text-align: left;
             /* transform: translateY(-50%); */
             font-family: 'Love Ya Like A Sister', cursive;
-            font-size: 40px;
+            font-size: 50px;
             color: #c70012;
             padding: 0 0px;
         }
@@ -112,11 +112,10 @@
             position: absolute;
             width: 100%;
             top: 12%;
-            left: 0%;
             text-align: center;
             /* transform: translateY(-50%); */
             font-family: 'Love Ya Like A Sister', cursive;
-            font-size: 50px;
+            font-size: 40px;
             color: #c70012;
             padding: 0 0px;
         }
@@ -124,11 +123,11 @@
         .word {
             position: absolute;
             width: 100%;
-            top: 1400px;
+            top: 65%;
             text-align: center;
             /* transform: translateY(-50%); */
             font-family: 'Love Ya Like A Sister', cursive;
-            font-size: 50px;
+            font-size: 40px;
             color: #c70012;
             padding: 0 0px;
         }
@@ -136,9 +135,9 @@
         .songs-list {
             position: absolute;
             height: 550px;
-            top: 850px;
+            top: 35%;
             width: 86%;
-            margin-left: 7%;
+            margin-left: 8%;
             transition-duration: 0.3s;
         }
 
@@ -173,7 +172,7 @@
 
         .songs-list table tr td {
             font-family:Georgia, 'Times New Roman', Times, serif;
-            font-size: 30px;
+            font-size: 25px;
             text-align: center;
             color: #ee4a4a;
         }
@@ -274,9 +273,9 @@
         <table>
             <tr style="color:rgba(20,20,20,0.7);background:rgba(255,255,255,0.7)">
                 <td style="width:10%"></td>
-                <td style="width:54%;text-align: center;">Song Name</td>
-                <td style="width:13%;text-align: center;">Author</td>
-                <td style="width:13%;text-align: center;">Time</td>
+                <td style="width:46%;text-align: center;">Song Name</td>
+                <td style="width:20%;text-align: center;">Author</td>
+                <td style="width:14%;text-align: center;">Time</td>
             </tr>
             <tr style="height:5px">
                 <td colspan=4>
@@ -346,17 +345,17 @@
             row.appendChild(indexCell);
 
             const songNameCell = document.createElement('td');
-            songNameCell.style.width = '54%';
+            songNameCell.style.width = '46%';
             songNameCell.innerHTML = musicList[i].song_name;
             row.appendChild(songNameCell);
 
             const authorCell = document.createElement('td');
-            authorCell.style.width = '13%';
+            authorCell.style.width = '20%';
             authorCell.innerHTML = musicList[i].author;
             row.appendChild(authorCell);
 
             const timeCell = document.createElement('td');
-            timeCell.style.width = '13%';
+            timeCell.style.width = '14%';
             timeCell.innerHTML = musicList[i].time;
             row.appendChild(timeCell);
 
@@ -404,9 +403,10 @@
             state = false;
             curIndex = idx;
 
-            $("#playBtn").click();
+            // $("#playBtn").click();
+            const playBtn = document.getElementById('playBtn');
+            playBtn.click();
         }
-
 
         //播放按钮
         $("#playBtn").click(function () {
