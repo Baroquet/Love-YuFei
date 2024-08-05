@@ -418,6 +418,8 @@
                 if ($("#player").attr("src") != null) {
                     var playPromise = $("#player")[0].play();
                     if (playPromise !== undefined) {
+                        document.getElementById("playBtn").innerHTML = "<i class='fa fa-play' aria-hidden='true'></i>";
+                        state = false;
                         playPromise.then(_ => {
                             // Automatic playback started!
                             // Show playing UI.
@@ -441,6 +443,8 @@
                     $("#player").attr("src", musicList[curIndex].url);
                     var playPromise = $("#player")[0].play();
                     if (playPromise !== undefined) {
+                        document.getElementById("playBtn").innerHTML = "<i class='fa fa-play' aria-hidden='true'></i>";
+                        state = false;
                         playPromise.then(_ => {
                             // Automatic playback started!
                             // Show playing UI.
