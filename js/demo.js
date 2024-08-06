@@ -1,3 +1,3 @@
 $(document).snowfall({
-    flakeCount: 50
+    flakeCount: 80
 })

@@ -351,13 +351,23 @@
 <body>
     <b class="pre_word">Give My Heart To You:</b>
 
+    <b id="songName"></b>
+
     <div id="frame">
         <div class="heart left"></div>
         <div class="heart right"></div>
         <div class="heart bottom"></div>
     </div>
 
-    <b id="songName"></b>
+    <b style="position: absolute;
+    width: 100%;
+    /* transform: translateY(-50%); */
+    text-align: center;
+    top: 35%;
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-size: 50px;
+    color: #c70012;">- Our Love Songs -</b>
+
 
     <!-- add a music list -->
     <div class="songs-list">
@@ -411,8 +421,9 @@
     <script>
 
         // create a list of texts
-        // var love_words = ['I Love You!', 'You are the Sun Shine!', 'My heart beats for you!'];
-        var love_words = ['I', 'Love', 'You'];
+        var i_love_you = ['I', 'Love', 'You'];
+        var ily_index = 0;
+        var love_words = ['你是我生命中的一抹阳光～', '每一天我的心因你跳动～', '你是我心中的温柔港湾，让我不再惧怕外面的风浪有多大～', '你的笑容，是我每天最期待的日出～'];
         var musicList = [
             { song_name: "中学时代", meaning_words: '把百合日记藏在书包，<br>我纯真的你，我生命中的唯一', author: "李健", url: "./Bgms/smnh-zxsd.mp3", time: "3:32" },
             { song_name: "出游", meaning_words: '就让阴暗被阳光照射并吞没，<br>化解所有的所有，<br>年少的不快乐<br>想象着，让人砰砰心跳头晕脑发热', author: "窦唯", url: "./Bgms/dw-cy.mp3", time: "2:23" },
@@ -462,9 +473,16 @@
         frame.addEventListener('click', function(event) {
             var text = document.createElement('div');
             text.className = 'text';
+
             // random select a word
-            var love_word = love_words[Math.floor(Math.random() * love_words.length)];
-            text.textContent = love_word;
+            if (ily_index < i_love_you.length) {
+                text.textContent = i_love_you[ily_index];
+                ily_index++;
+            } else {
+                ily_index = 0;
+                var love_word = love_words[Math.floor(Math.random() * love_words.length)];
+                text.textContent = love_word;
+            }
             text.style.left = event.pageX - 100 + 'px';
             text.style.top = event.pageY - 50 + 'px';
 
