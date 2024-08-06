@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>2024-7-7</title>
+    <title>七夕节快乐！2024</title>
     <meta name="language" content="zh-CN">
     <script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css"/>
-    <link rel="icon" type="image/x-icon" href="./images/icon.JPG">
+    <link rel="icon" type="image/x-icon" href="./images/heart.png">
     <link rel="stylesheet" href="css/demo.css" />
     <style>
         * {
@@ -25,6 +25,9 @@
             width: 400px;
             height: 300px;
             margin: 35% auto;
+            /* border: #000 1px solid; */
+            /* animation: beat .4s ease infinite normal; */
+
         }
 
         .heart {
@@ -95,6 +98,96 @@
             }
         }
 
+        .rotateAnim {
+            animation: rotate 0.5s ease-in-out;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            5% {
+                transform: scale(1.01) rotate(-1deg);
+            }
+
+            10% {
+                transform: scale(1.02) rotate(-3deg);
+            }
+
+            15% {
+                transform: scale(1.03) rotate(-5deg);
+            }
+
+            20% {
+                transform: scale(1.05) rotate(-10deg);
+            }
+
+            25% {
+                transform: scale(1.1) rotate(-15deg);
+            }
+
+            30% {
+                transform: scale(1.15) rotate(-10deg);
+            }
+
+            35% {
+                transform: scale(1.2) rotate(-5deg);
+            }
+
+            40% {
+                transform: scale(1.25) rotate(-3deg);
+            }
+
+            45% {
+                transform: scale(1.3) rotate(-1deg);
+            }
+
+            50% {
+                transform: scale(1.35) rotate(0deg);
+            }
+
+            55% {
+                transform: scale(1.3) rotate(1deg);
+            }
+
+            60% {
+                transform: scale(1.25) rotate(3deg);
+            }
+
+            65% {
+                transform: scale(1.2) rotate(5deg);
+            }
+
+            70% {
+                transform: scale(1.15) rotate(10deg);
+            }
+
+            75% {
+                transform: scale(1.1) rotate(15deg);
+            }
+
+            80% {
+                transform: scale(1.05) rotate(10deg);
+            }
+
+            85% {
+                transform: scale(1.03) rotate(5deg);
+            }
+
+            90% {
+                transform: scale(1.02) rotate(3deg);
+            }
+
+            95% {
+                transform: scale(1.01) rotate(1deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
         .pre_word {
             position: absolute;
             width: 100%;
@@ -149,7 +242,7 @@
             width: 100%;
             height: 400px;
             /* border: #000000 3px solid; */
-            background-color: #ec9f9f;
+            background-color: rgba(245, 148, 148, 0.717);
             border-radius: 15px;
             overflow-y: scroll;
         }
@@ -159,7 +252,7 @@
         }
 
         .songs-list table tr:hover {
-            background: rgba(180, 180, 180, 0.3);
+            background: rgba(255, 255, 255, 0.4);
         }
 
         .songs-list table tr:hover .song-index {
@@ -174,7 +267,7 @@
             font-family:Georgia, 'Times New Roman', Times, serif;
             font-size: 25px;
             text-align: center;
-            color: #ee4a4a;
+            color: #f52d2d;
         }
 
         .song-index {
@@ -216,8 +309,6 @@
             width: 100%;
             height: 150px;
             text-align: center;
-            padding: 0px 0px;
-            /*background-color: #333;*/
             background-image: linear-gradient(#444, #222);
             white-space: nowrap;
             box-shadow: 0px -1px 8px #000;
@@ -295,6 +386,7 @@
         </div>
         
     </div>
+    
 
     <b class="word" id="wd"></b>
 
@@ -320,14 +412,13 @@
 
         // create a list of texts
         var love_words = ['I Love You!', 'You are the Sun Shine!', 'My heart beats for you!'];
-
         var musicList = [
-            { song_name: "中学时代", meaning_words: '把百合日记藏在书包，<br>我纯真的你，我生命中的唯一', author: "李健", url: "./Bgms/smnh-zxsd.ogg", time: "3:32" },
-            { song_name: "出游", meaning_words: '就让阴暗被阳光照射并吞没，<br>化解所有的所有，<br>年少的不快乐<br>想象着，让人砰砰心跳头晕脑发热', author: "窦唯", url: "./Bgms/dw-cy.ogg", time: "2:23" },
-            { song_name: "我唯有的你", meaning_words: '绕来绕去浮浮沉沉江湖当海洋，<br>错把欲望当成了理想<br>帮我渡过重重险滩是谁派你来，<br>我拿什么回报你的爱', author: "李健", url: "./Bgms/lj-wwydn.ogg", time: "4:12" },
-            { song_name: "日落之前", meaning_words: '当我再次牵起你的手，<br>我竟一如当初般感动<br>坚强的心依然柔软，<br>还会为了爱泪流', author: "李健", url: "./Bgms/lj-rlzq.mp3", time: "3:22" },
-            { song_name: "爱丽丝晚安", meaning_words: 'Alice Good Night、Good Night，<br>迷雾漆黑，我会陪你穿越', author: "守夜人", url: "./Bgms/nk-alice-good-night.mp3", time: "4:49" },
-            { song_name: "一切刚刚好", meaning_words: '感谢你给我的如此不同，<br>你让我知道我为你心动', author: "李健", url: "./Bgms/lj-yqggh.ogg", time: "4:07" },
+            { song_name: "中学时代", meaning_words: '把百合日记藏在书包，<br>我纯真的你，我生命中的唯一', author: "李健", url: "https://1drv.ms/v/c/ab1ab2f369eeca0b/EVuHvGGY6TdElN8jMQC1GpYBr7kNSqluFyD-zkTvtylZ1A?e=DJM8t4", time: "3:32" },
+            { song_name: "出游", meaning_words: '就让阴暗被阳光照射并吞没，<br>化解所有的所有，<br>年少的不快乐<br>想象着，让人砰砰心跳头晕脑发热', author: "窦唯", url: "https://1drv.ms/v/c/ab1ab2f369eeca0b/IQNFqFNpjzDQTo2p0ShL5JTPAUDhVSsUFak0ed2L5Ek1jdU", time: "2:23" },
+            { song_name: "我唯有的你", meaning_words: '绕来绕去浮浮沉沉江湖当海洋，<br>错把欲望当成了理想<br>帮我渡过重重险滩是谁派你来，<br>我拿什么回报你的爱', author: "李健", url: "https://1drv.ms/v/c/ab1ab2f369eeca0b/ERGywxehly9PlNVqz1vUlGgBtEyQD5sTA4tu9dXtH8bcng?e=XjlKaB", time: "4:12" },
+            { song_name: "日落之前", meaning_words: '当我再次牵起你的手，<br>我竟一如当初般感动<br>坚强的心依然柔软，<br>还会为了爱泪流', author: "李健", url: "https://1drv.ms/u/c/ab1ab2f369eeca0b/EZLMbupnRRVGiKb2bctuwTYBvxvCbtNzBLRGE_eTLQYD6A?e=Ikz8eK", time: "3:22" },
+            { song_name: "爱丽丝晚安", meaning_words: 'Alice Good Night、Good Night，<br>迷雾漆黑，我会陪你穿越', author: "守夜人", url: "https://1drv.ms/u/c/ab1ab2f369eeca0b/EYKBWf_JLhFApTeb1tF6XNwBDm81iWSONOP9-h8lwMzvZQ?e=dwQl7w", time: "4:49" },
+            { song_name: "一切刚刚好", meaning_words: '感谢你给我的如此不同，<br>你让我知道我为你心动', author: "李健", url: "https://1drv.ms/v/c/ab1ab2f369eeca0b/ETQ0lLJcUxhPvsEE8DrBjx8BiTlHiWtKTcLuJbP78eTsCQ?e=15GQOb", time: "4:07" },
             { song_name: "我的爱", meaning_words: '我的爱就像落叶风中摇，<br>期待暖暖的怀抱，<br>能够栖息到终老', author: "张雨生", url: "./Bgms/zys-wda.ogg", time: "4:21" },
 
         ]
@@ -366,19 +457,23 @@
         // var audio = document.getElementById('audios');
         // audio.volume = 1.0;
         // audio.play();
-        document.getElementById('frame').addEventListener('click', function(event) {
+        var frame = document.getElementById('frame');
+        frame.addEventListener('click', function(event) {
             var text = document.createElement('div');
             text.className = 'text';
             // random select a word
             var love_word = love_words[Math.floor(Math.random() * love_words.length)];
             text.textContent = love_word;
-            text.style.left = event.pageX + 'px';
-            text.style.top = event.pageY + 'px';
+            text.style.left = event.pageX - 100 + 'px';
+            text.style.top = event.pageY - 50 + 'px';
 
-            console.log(event.pageX, event.pageY);
-            console.log(text.width, text.height);
             document.body.appendChild(text);
 
+            // rotate the text
+            text.style.transform = 'rotate(' + (Math.random() - 0.5) * 2 * 8 + 'deg)';
+            
+            // 重新绑定动画并触发
+            frame.classList.add("rotateAnim");
 
             setTimeout(function() {
                 text.style.opacity = 1;
@@ -390,7 +485,13 @@
                     document.body.removeChild(text);
                 }, 1000);
             }, 2000);
+
         });
+
+        frame.addEventListener('animationend', function(event) {
+            frame.classList.remove("rotateAnim");
+        });
+
         document.body.clientWidth;
 
         var state = false;
